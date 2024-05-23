@@ -3,10 +3,10 @@ just for quick launch
 
 frontend
 1). D:\matrimonial-project-master>cd frontend
-	cd frontend
+	
 
 2). D:\matrimonial-project-master\frontend>ng s
-	ng s
+	
 
 
 backend
