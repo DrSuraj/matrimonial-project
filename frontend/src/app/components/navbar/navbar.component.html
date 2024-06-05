@@ -5,10 +5,10 @@
         class="navbar-brand me-auto"
         routerLink="/page"
         routerLinkActive="active"
-        ><i class="fas fa-user-friends me-3"></i>
-
-        Jeevan <span class="text-success">Sathi</span></a
       >
+        <i class="fas fa-user-friends me-3"></i>
+        Jeevan <span class="text-success">Sathi</span>
+      </a>
       <div
         class="offcanvas offcanvas-end"
         tabindex="-1"
@@ -38,12 +38,9 @@
                 aria-current="page"
                 routerLink="/page"
                 routerLinkActive="active"
-                >
-                <!-- <i class="fas fa-home text fa-sm me-2"></i> -->
-                Home</a
+                >Home</a
               >
             </li>
-
             <li class="dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -51,22 +48,22 @@
                 data-bs-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
+                >Matches</a
               >
-              <!-- <i class="fas fa-heart text fa-sm me-2"></i> -->
-              Matches
-              </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a
                   class="dropdown-item"
                   routerLink="/matches/grooms"
                   routerLinkActive="active"
-                  ><i class="fas fa-user-tie text fa-sm me-2"></i>Grooms</a
+                >
+                  <i class="fas fa-user-tie text fa-sm me-2"></i>Grooms</a
                 >
                 <a
                   class="dropdown-item"
                   routerLink="/matches/brides"
                   routerLinkActive="active"
-                  ><i class="fas fa-user  text fa-sm me-2"></i>Brides</a
+                >
+                  <i class="fas fa-user text fa-sm me-2"></i>Brides</a
                 >
               </div>
             </li>
@@ -75,9 +72,7 @@
                 class="nav-link mx-lg-2"
                 routerLink="/about"
                 routerLinkActive="active"
-                >
-                <!-- <i class="fas fa-address-card text fa-sm me-2"></i> -->
-                About</a
+                >About</a
               >
             </li>
             <li class="nav-item">
@@ -85,78 +80,77 @@
                 class="nav-link mx-lg-2"
                 routerLink="/services"
                 routerLinkActive="active"
-                >
-                <!-- <i class="fas fa-tools text fa-sm me-2"></i> -->
-                Services</a
+                >Services</a
               >
             </li>
-
             <li class="nav-item">
               <a
                 class="nav-link mx-lg-2"
                 routerLink="/contact"
                 routerLinkActive="active"
-                >
-                <!-- <i class="fas fa-message text fa-sm me-2"></i> -->
-                Contact</a
+                >Contact</a
               >
             </li>
-
-            <!-- <li class="nav-item">
-              <a
-                class="nav-link mx-lg-2"
-                routerLink="/admin/admin/dashboard"
-                routerLinkActive="active"
-                >Admin</a
-              >
-            </li> -->
-
             <li class="nav-item">
               <a
                 class="nav-link mx-lg-2"
                 routerLink="/chats"
                 routerLinkActive="active"
-                >
-                <!-- <i class="fas fa-location-dot text fa-sm me-2"></i> -->
-                Chats</a
+                >Chats</a
               >
             </li>
           </ul>
         </div>
       </div>
+
+      <!-- Notification icon Bell -->
+      <div>
+        <button
+          type="button"
+          class="btn me-3 position-relative"
+          (click)="toggleNotificationBox()"
+        >
+          <i class="fas fa-bell bell"></i>
+          <span
+            *ngIf="hasNewNotifications"
+            class="position-absolute top-30 start-80 translate-middle p-1 bg-danger border border-light rounded-circle"
+          ></span>
+        </button>
+      </div>
+      
       <div class="dropdown login-button text-white">
         <a
-          class=" dropdown-toggle profile"
+          class="dropdown-toggle profile"
           role="button"
           data-bs-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
         >
-        <!-- <i class="fas fa-heart text fa-sm me-2"></i> -->
-        <i class="fas fa-user me-2"></i>{{userName}}
+          <i class="fas fa-user me-2"></i>{{ userName }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a
             class="dropdown-item"
-            routerLink="/home"
-            (click)="showAlert()"
-            ><i class="fas fa-sign-out text fa-sm me-2"></i>Logout</a
+            href="javascript:void(0);"
+            (click)="myProfile()"
           >
-          <a
-            class="dropdown-item"
-            routerLink="/user/changepassword"
-            ><i class="fas fa-lock text fa-sm me-2"></i>Change Password</a
+            <i class="fas fa-user text fa-sm me-2"></i>My Profile</a
           >
           <!-- <a
             class="dropdown-item"
             href="javascript:void(0);"
-            ><i class="fas fa-user-edit text fa-sm me-2"></i>Update Profile</a
+            (click)="updateProfile()"
+          >
+            <i class="fas fa-user-edit text fa-sm me-2"></i>Update Profile</a
           > -->
+          <a class="dropdown-item" routerLink="/user/changepassword">
+            <i class="fas fa-lock text fa-sm me-2"></i>Change Password</a
+          >
+          <a class="dropdown-item logout" (click)="logOut()">
+            <i class="fas fa-sign-out text fa-sm me-2"></i>Logout</a
+          >
         </div>
       </div>
-
-
-
       <button
         class="navbar-toggler"
         type="button"
@@ -169,4 +163,5 @@
       </button>
     </div>
   </nav>
+  <app-notifications *ngIf="isNotificationBoxVisible"></app-notifications>
 </div>

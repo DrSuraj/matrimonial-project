@@ -17,6 +17,10 @@
   transition: 0.3s color;
 }
 
+.bell{
+  font-size: 25px;
+  color: #01b484;
+}
 
 
 .login-button{
@@ -158,3 +162,15 @@ position: relative;
   border-top: 1px solid #e9ecef;
 }
 
+.bell {
+  font-size: 24px;
+  color: green;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.logout{
+  cursor: pointer;
+}

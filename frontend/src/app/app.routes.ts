@@ -27,26 +27,31 @@ import { ChangePasswordComponent } from './components/User Details/change-passwo
 import { DashboardComponent } from './components/admin/admin-control/dashboard/dashboard.component';
 import { LocationBookingReportComponent } from './components/admin/admin-control/location-booking-report/location-booking-report.component';
 import { ChatsComponent } from './components/navbar/chats/chats.component';
+import { FormComponent } from './components/admin/admin-control/form/form.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
+import { authGuard } from './components/guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'navbar', component: NavbarComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: 'chatform', component: ChatFormComponent },
-  { path: 'services', component: ServicesComponent },
+  { path: 'navbar', component: NavbarComponent, canActivate: [authGuard] },
+  { path: 'home', component: HomeComponent, canActivate: [authGuard] },
+  { path: 'about', component: AboutComponent , canActivate: [authGuard]},
+  { path: 'contact', component: ContactComponent, canActivate: [authGuard] },
+  { path: 'chatform', component: ChatFormComponent, canActivate: [authGuard] },
+  { path: 'services', component: ServicesComponent, canActivate: [authGuard] },
   {
     path: 'admin',
-    component: AdminComponent,
+    component: AdminComponent, canActivate: [authGuard],
     children: [
-      { path: 'admin/contact-report', component: ContactReportComponent },
-      { path: 'admin/user-management', component: UserManagementComponent },
-      { path: 'admin/regd-report', component: RegdReportComponent },
-      { path: 'admin/dashboard', component: DashboardComponent },
-      { path: 'admin/location-booking', component: LocationBookingReportComponent },
+      { path: 'admin/contact-report', component: ContactReportComponent, canActivate: [authGuard] },
+      { path: 'admin/user-management', component: UserManagementComponent, canActivate: [authGuard] },
+      { path: 'admin/regd-report', component: RegdReportComponent, canActivate: [authGuard] },
+      { path: 'admin/dashboard', component: DashboardComponent, canActivate: [authGuard] },
+      { path: 'admin/location-booking', component: LocationBookingReportComponent, canActivate: [authGuard] },
+      {path: 'admin/form', component: FormComponent, canActivate: [authGuard]},
+    
     ],
   },
   { path: 'forgot', component: ForgotComponent },
@@ -55,11 +60,14 @@ export const routes: Routes = [
   { path: 'familyinfo/:userName', component: FamilyInfoComponent },
   { path: 'educationalinfo/:userName', component: EducationalInfoComponent },
   { path: 'personalinfo/:userName', component: PersonalInfoComponent },
-  { path: 'page', component: PageComponent },
-  { path: 'matches/brides/bride-info', component: BridesInfoComponent },
-  { path: 'matches/grooms', component: GroomComponent },
-  { path: 'matches/brides', component: BridesComponent },
-  { path: 'matches/grooms/groom-info', component: GroomInfoComponent },
-  { path: 'user/changepassword', component: ChangePasswordComponent },
-  { path: 'chats', component: ChatsComponent },
+  { path: 'page', component: PageComponent, canActivate: [authGuard] },
+  { path: 'matches/brides/bride-info', component: BridesInfoComponent, canActivate: [authGuard] },
+  { path: 'matches/grooms', component: GroomComponent , canActivate: [authGuard]},
+  { path: 'matches/brides', component: BridesComponent , canActivate: [authGuard]},
+  { path: 'matches/grooms/groom-info', component: GroomInfoComponent, canActivate: [authGuard] },
+  { path: 'user/changepassword', component: ChangePasswordComponent , canActivate: [authGuard]},
+  { path: 'chats', component: ChatsComponent, canActivate: [authGuard] },
+  {
+    path:'notification',component:NotificationsComponent, canActivate: [authGuard]
+  }
 ];
